@@ -66,16 +66,27 @@ Built with Bootstrap to ensure usability across devices.
 **🔁 End-to-End Workflow**
 
 Citizen submits an issue (text + image + auto-location)
+
                     ⬇️
+                    
 Backend validates and processes the report
+
                     ⬇️
+                    
 AI generates intelligent tags and categorization
+
                     ⬇️
+                    
 Issue appears on the Admin Dashboard
+
                     ⬇️
+                    
 Authorities assign, prioritize, and resolve the issue
+
                     ⬇️
+                    
 Status updates are reflected back to the citizen
+
 
 **🛠️ Tech Stack**
 Frontend
