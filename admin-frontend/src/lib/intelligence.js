@@ -256,14 +256,14 @@ const CITY_ZONES = [
         lat: 20.2936, 
         lon: 85.8327, 
         radius: 800, // 800 meters range
-        tags: ["Flood Prone", "Drainage Issue"] 
+        tags: ["Flood Prone", "Drainage Issue", "drainage", "leak", "water", "paani", "Paani", "Pani", "Pipe", "pipe", "water_leak"] 
     },
     { 
         name: "KIIT University", 
         lat: 20.3533, 
         lon: 85.8186, 
         radius: 1200, 
-        tags: ["School Zone", "High Pedestrian"] 
+        tags: ["School Zone", "High Pedestrian", "traffic", "Traffic", "Heavy traffic", "heavy traffic", "Schhol", "kids"] 
     },
     { 
         name: "Capital Hospital", 
