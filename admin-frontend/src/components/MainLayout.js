@@ -1,65 +1,22 @@
-// // src/components/MainLayout.js
-
-// import React, { useState } from 'react';
-// import { Container, Button } from 'react-bootstrap';
-// import Sidebar from './Sidebar'; // Import the new Sidebar component
-// import DashboardPage from '../pages/DashboardPage';
-// import IssuesPage from '../pages/IssuesPage';
-// // import other pages here
-// import { Routes, Route } from 'react-router-dom';
-
-// const MainLayout = () => {
-//   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-//   const toggleSidebar = () => {
-//     setSidebarCollapsed(!sidebarCollapsed);
-//   };
-
-//   return (
-//     <div className="d-flex" id="wrapper">
-//       <div className={`sidebar-wrapper bg-dark ${sidebarCollapsed ? 'toggled' : ''}`}>
-//         <Sidebar />
-//       </div>
-      
-//       <div id="page-content-wrapper" className="flex-grow-1">
-//         <Button onClick={toggleSidebar} className="m-3 d-md-none">
-//           Toggle Sidebar
-//         </Button>
-//         <Container fluid>
-//           <Routes>
-//             <Route path="/dashboard" element={<DashboardPage />} />
-//             <Route path="/issues" element={<IssuesPage />} />
-//             {/* Add more routes for other pages */}
-//           </Routes>
-//         </Container>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default MainLayout;
-
 // src/components/MainLayout.js
-
-import React, { useState } from 'react';
-import { Button } from 'react-bootstrap';
-import { Routes, Route } from 'react-router-dom';
+import React, {useState} from 'react';
+import {Button} from 'react-bootstrap';
+import {Routes,Route} from 'react-router-dom';
 import Sidebar from './Sidebar';
 import DashboardPage from '../pages/DashboardPage';
 import IssuesPage from '../pages/IssuesPage';
 import IssueDetailsPage from '../pages/IssueDetailsPage';
-import { FaBars } from 'react-icons/fa'; // Import the hamburger icon
+import {FaBars} from 'react-icons/fa'; // hamburger icon
 
 const MainLayout = () => {
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-
-  const toggleSidebar = () => {
+  const [sidebarCollapsed,setSidebarCollapsed] = useState(false);
+const toggleSidebar =()=>{
     setSidebarCollapsed(!sidebarCollapsed);
   };
 
   return (
     <div className="d-flex vw-100 vh-100">
-      {/* Sidebar Component */}
+      {/* Sidebar */}
       <div className={`sidebar-container ${sidebarCollapsed ? 'collapsed' : ''}`}>
         <Sidebar toggleSidebar={toggleSidebar} isCollapsed={sidebarCollapsed} />
       </div>
@@ -77,7 +34,6 @@ const MainLayout = () => {
           <Route path="/" element={<DashboardPage />} />
           <Route path="/issues" element={<IssuesPage />} />
           <Route path="/issue/:id" element={<IssueDetailsPage />} />
-          {/* Add more routes here */}
         </Routes>
       </div>
     </div>
