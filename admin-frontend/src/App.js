@@ -126,7 +126,7 @@ import MapPage from './pages/MapPage';
 import DepartmentsPage from './pages/DepartmentPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ProfilePage from './pages/ProfilePage';
-import SettingsPage from './pages/SettingsPage'; // 👈 FIXED: Corrected Name
+import SettingsPage from './pages/SettingsPage'; 
 
 // Styles
 import './styles.css';
@@ -203,7 +203,7 @@ function App() {
               <Route path="/departments" element={<DepartmentsPage />} />
               <Route path="/analytics" element={<AnalyticsPage />} />
               <Route path="/profile" element={<ProfilePage />} />
-              <Route path="/settings" element={<SettingsPage />} /> {/* 👈 NEW ROUTE ADDED */}
+              <Route path="/settings" element={<SettingsPage />} /> 
             </Routes>
           </main>
         </div>
