@@ -1,20 +1,20 @@
 // src/pages/AnalyticsPage.js
 
-import React, { useState, useEffect } from 'react';
-import { collection, query, onSnapshot } from "firebase/firestore";
-import { db } from "../lib/firebaseconfig";
-import { Row, Col, Card } from 'react-bootstrap';
-import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement } from 'chart.js';
-import { Bar, Pie } from 'react-chartjs-2';
+import React, {useState,useEffect} from 'react';
+import {collection,query,onSnapshot} from "firebase/firestore";
+import {db} from "../lib/firebaseconfig";
+import {Row,Col,Card} from 'react-bootstrap';
+import {Chart as ChartJS,CategoryScale,LinearScale,BarElement,Title,Tooltip,Legend,ArcElement} from 'chart.js';
+import {Bar,Pie} from 'react-chartjs-2';
 
 // Register Chart.js components
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, ArcElement);
 
 const AnalyticsPage = () => {
-    const [issues, setIssues] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [issues, setIssues] =useState([]);
+    const [loading, setLoading] =useState(true);
 
-    // Fetch all issues from Firestore
+    //fetch all issues from Firestore
     useEffect(() => {
         const q = query(collection(db, "reports"));
         const unsubscribe = onSnapshot(q, (querySnapshot) => {
@@ -28,7 +28,7 @@ const AnalyticsPage = () => {
         return () => unsubscribe();
     }, []);
 
-    // --- Data Processing for KPIs and Charts ---
+    //Data Processing for KPIs and Charts
 
     // Calculate KPIs
     const totalIssues = issues.length;
@@ -47,8 +47,7 @@ const AnalyticsPage = () => {
         return acc;
     }, {});
 
-    // --- Chart Configurations ---
-
+    //charts
     const statusChartData = {
         labels: Object.keys(statusCounts),
         datasets: [{
