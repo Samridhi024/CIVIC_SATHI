@@ -11,7 +11,7 @@ const CITY_ZONES = [
         lat:20.3533, 
         lon:85.8186, 
         radius:1200, 
-        tags:["School Zone", "High Pedestrian", "traffic", "Traffic", "Heavy traffic", "heavy traffic", "Schhol", "kids"] 
+        tags:["School Zone", "High Pedestrian", "traffic", "Traffic", "Heavy traffic", "heavy traffic", "Schhol", "kids", "street_light", "light"] 
     },
     { 
         name:"Capital Hospital", 
