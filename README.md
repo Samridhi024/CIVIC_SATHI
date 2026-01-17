@@ -47,6 +47,14 @@ CIVIC_SATHI/
 ├── package-lock.json
 └── package.json
 
+CivicSathi-AI
+│   ├── Dockerfile
+│   ├── engine.py
+│   ├── main.py
+│   ├──requirements.txt
+│   ├── tag_departments.csv
+│   └── tag_keywords.csv
+
 
 **✨ Key Features (User Side)**
 
@@ -56,7 +64,7 @@ Submit complaints using text descriptions and images directly from the browser.
 **->Automatic Location Capture**
 Uses the Geolocation API to accurately tag issues with real-world coordinates.
 
-**->AI-Assisted Issue Tagging**
+**->AI-Assisted Issue Tagging** (CivicSathi-AI)
 User descriptions are processed to generate intelligent tags for better classification and prioritization.
 
 **->Status Visibility & Transparency**
