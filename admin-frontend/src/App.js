@@ -544,6 +544,7 @@ import MapPage from './pages/MapPage';
 import DepartmentsPage from './pages/DepartmentPage';
 import AnalyticsPage from './pages/AnalyticsPage';
 import ProfilePage from './pages/ProfilePage';
+import ProfilePage from './pages/SettingsPage';
 
 // Styles
 import './styles.css';
