@@ -12,7 +12,6 @@ const SettingsPage = () => {
     const [smsAlerts, setSmsAlerts] = useState(false);
     const [showSuccess, setShowSuccess] = useState(false);
 
-    // 🌑 DARK MODE LOGIC
     useEffect(() => {
         if (darkMode) {
             document.body.classList.add('dark-mode');
@@ -102,6 +101,7 @@ const SettingsPage = () => {
                 </Col>
             </Row>
 
+            {/* SAVE BUTTON */}
             <div className="text-end">
                 <Button variant="primary" size="lg" className="px-5 fw-bold shadow" onClick={handleSave}>
                     <FaSave className="me-2"/> Save Changes
