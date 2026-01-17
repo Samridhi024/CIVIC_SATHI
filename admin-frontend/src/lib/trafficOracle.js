@@ -2,7 +2,6 @@
 import roadData from '../data/major_roads.json';
 
 // Helper: Calculate distance between a Point (p) and a Line Segment (v, w)
-// This is pure geometry logic.
 const distToSegmentSquared = (p, v, w) => {
     const l2 = (v[0] - w[0])**2 + (v[1] - w[1])**2;
     if (l2 === 0) return (p[0] - v[0])**2 + (p[1] - v[1])**2;
@@ -17,37 +16,47 @@ const distToSegment = (p, v, w) => {
 
 // Main Function: Check if location is near a major road
 export const getTrafficProfile = (locationString) => {
-    if (!locationString || !locationString.includes(',')) return null;
+    // 1. Debug Log: Start
+    console.log("🚦 ORACLE START: Analyzing location:", locationString);
 
-    // Report format is "Lat, Lon" (e.g., 20.296, 85.824)
-    // GeoJSON format is [Lon, Lat] (Standard X, Y order)
+    if (!locationString || !locationString.includes(',')) {
+        console.error("❌ ORACLE ERROR: Invalid location format");
+        return null;
+    }
+
+    // 2. Parse Coordinates
     const [reportLat, reportLon] = locationString.split(',').map(Number);
     
-    // We check every road in the file.
-    // Optimization: In a real app, we would use a spatial index (R-Tree), 
-    // but for <1000 roads in a hackathon, a simple loop is fine.
-    
-    for (const feature of roadData.features) {
-        const roadType = feature.properties.highway; // 'primary', 'secondary', etc.
-        const coordinates = feature.geometry.coordinates;
+    // Safety check for NaN
+    if (isNaN(reportLat) || isNaN(reportLon)) {
+        console.error("❌ ORACLE ERROR: Coordinates are not numbers");
+        return null;
+    }
 
-        // Coordinates in GeoJSON are arrays of points: [[lon1, lat1], [lon2, lat2]...]
-        // We check the distance from the Report to every "segment" of the road.
+    // 3. Loop through roads
+    for (const feature of roadData.features) {
+        const roadType = feature.properties.highway; 
+        const coordinates = feature.geometry.coordinates;
         
         for (let i = 0; i < coordinates.length - 1; i++) {
             const p1 = coordinates[i];     // [lon, lat]
             const p2 = coordinates[i + 1]; // [lon, lat]
 
-            // Convert Lat/Lon distance to approx meters (Rough estimation: 1 deg ≈ 111km)
-            // We want to check if it's within ~30 meters (0.0003 degrees approx)
-            
-            // Note: pass [Lon, Lat] to match GeoJSON format
+            // Calculate Distance
             const distDegrees = distToSegment([reportLon, reportLat], p1, p2);
             
-            // 0.0003 degrees is roughly 30-40 meters
-            if (distDegrees < 0.0003) {
+            // 4. LOGGING CLOSE MATCHES
+            // If it's somewhat close (within ~500m), log it so we know logic works
+            if (distDegrees < 0.005) {
+                console.log(`🔍 Close to ${feature.properties.name || 'Road'}: ${distDegrees.toFixed(5)}`);
+            }
+
+            // 5. RELAXED THRESHOLD MATCH
+            // Changed from 0.0003 to 0.002 (Approx 200 meters)
+            if (distDegrees < 0.002) {
                 
-                // MATCH FOUND! It is on a major road.
+                console.log("✅ MATCH FOUND! Road:", feature.properties.name);
+
                 let urgency = "HIGH";
                 let desc = "This is a key arterial road.";
                 let color = "warning";
@@ -74,6 +83,7 @@ export const getTrafficProfile = (locationString) => {
     }
 
     // If no match found
+    console.log("⚠️ No Match Found. Returning Local Street.");
     return {
         level: "LOW",
         label: "Local Street",
