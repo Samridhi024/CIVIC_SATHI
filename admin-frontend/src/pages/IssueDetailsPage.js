@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Card, Row, Col, Button, Form, Badge, Alert } from 'react-bootstrap';
 import { FaDownload, FaCheckCircle, FaFlag, FaRobot, FaRoad, FaExclamationTriangle, FaLightbulb } from 'react-icons/fa';
